@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -115,6 +116,9 @@ dependencies {
     implementation(libs.google.id)
     // Firebase Analytics
     implementation(libs.firebase.analytics)
+    // Coil Image Loading
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
 
 // Allow references to generated code
