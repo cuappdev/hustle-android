@@ -63,9 +63,7 @@ class AuthViewModel @Inject constructor(
                     }
                 }
 
-                is AuthResult.Loading -> {
-                    applyMutation { copy(isLoading = true) }
-                }
+                is AuthResult.Loading -> Unit
             }
         }
     }
@@ -95,9 +93,7 @@ class AuthViewModel @Inject constructor(
                     }
                 }
 
-                is AuthResult.Loading -> {
-                    applyMutation { copy(isLoading = true) }
-                }
+                is AuthResult.Loading -> Unit
             }
         }
     }
