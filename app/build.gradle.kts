@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -41,7 +42,7 @@ android {
             )
             buildConfigField(
                 "String",
-                "GOOGLE_AUTH_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_CLIENT_ID")}\""
+                "GOOGLE_AUTH_WEB_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_WEB_CLIENT_ID")}\""
             )
             buildConfigField(
                 "String",
@@ -52,7 +53,7 @@ android {
         debug {
             buildConfigField(
                 "String",
-                "GOOGLE_AUTH_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_CLIENT_ID")}\""
+                "GOOGLE_AUTH_WEB_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_WEB_CLIENT_ID")}\""
             )
             buildConfigField(
                 "String",
@@ -92,17 +93,32 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.retrofit)
+    // Hilt Dependencies
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
+    // Retrofit and OkHttp Dependencies
+    implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi.kotlin)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // Lint Checks
     lintChecks(libs.slack.compose.lint)
+    // Navigation and Serialization
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
+    // Firebase Google Sign In Dependencies
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.credential.manager)
+    implementation(libs.credential.manager.play.services)
+    implementation(libs.google.id)
+    // Firebase Analytics
+    implementation(libs.firebase.analytics)
+    // Coil Image Loading
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
 
 // Allow references to generated code
