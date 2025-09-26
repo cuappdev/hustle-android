@@ -21,6 +21,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
+          
+      - name: Create secrets.properties
+        run: |
+          echo "GOOGLE_AUTH_CLIENT_ID=\"${{ secrets.GOOGLE_AUTH_CLIENT_ID }}\"" >> secrets.properties
+          echo "BASE_API_URL_PROD=\"${{ secrets.BASE_API_URL_PROD }}\"" >> secrets.properties
+          echo "BASE_API_URL_DEV=\"${{ secrets.BASE_API_URL_DEV }}\"" >> secrets.properties
 
       - name: Create google-services.json
         run: |
