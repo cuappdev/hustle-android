@@ -92,17 +92,29 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.retrofit)
+    // Hilt Dependencies
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
+    // Retrofit and OkHttp Dependencies
+    implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi.kotlin)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // Lint Checks
     lintChecks(libs.slack.compose.lint)
+    // Navigation and Serialization
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
+    // Firebase Google Sign In Dependencies
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.credential.manager)
+    implementation(libs.credential.manager.play.services)
+    implementation(libs.google.id)
+    // Firebase Analytics
+    implementation(libs.firebase.analytics)
 }
 
 // Allow references to generated code
