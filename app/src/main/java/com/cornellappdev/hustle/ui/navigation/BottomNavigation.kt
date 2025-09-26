@@ -1,49 +1,46 @@
 package com.cornellappdev.hustle.ui.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
+import androidx.annotation.DrawableRes
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.cornellappdev.hustle.R
 
 data class BottomNavigationItem<T : AppDestination>(
     val route: T,
     val title: String,
-    val icon: ImageVector,
-    val selectedIcon: ImageVector = icon,
+    @DrawableRes val icon: Int,
+    @DrawableRes val selectedIcon: Int = icon,
 )
 
 val bottomNavigationItems = listOf(
     BottomNavigationItem(
         route = HomeTab,
         title = "Home",
-        icon = Icons.Outlined.Home,
-        selectedIcon = Icons.Filled.Home,
+        icon = R.drawable.ic_home,
+        selectedIcon = R.drawable.ic_home,
     ),
     BottomNavigationItem(
-        route = FavoritesTab,
-        title = "Favorites",
-        icon = Icons.Outlined.FavoriteBorder,
-        selectedIcon = Icons.Filled.Favorite,
+        route = MessagesTab,
+        title = "Messages",
+        icon = R.drawable.ic_messages,
+        selectedIcon = R.drawable.ic_messages,
     ),
     BottomNavigationItem(
         route = ProfileTab,
         title = "Profile",
-        icon = Icons.Outlined.Person,
-        selectedIcon = Icons.Filled.Person,
+        icon = R.drawable.ic_profile,
+        selectedIcon = R.drawable.ic_profile,
     ),
 )
 
@@ -67,8 +64,9 @@ fun BottomNavigationBar(navController: NavHostController) {
 
                 NavigationBarItem(icon = {
                     Icon(
-                        if (selected) item.selectedIcon else item.icon,
-                        contentDescription = item.title
+                        painter = painterResource(id = if (selected) item.selectedIcon else item.icon),
+                        contentDescription = item.title,
+                        tint = Color.Unspecified
                     )
                 }, selected = selected, onClick = {
                     navController.navigate(item.route) {
@@ -78,6 +76,8 @@ fun BottomNavigationBar(navController: NavHostController) {
                         launchSingleTop = true
                         restoreState = true
                     }
+                }, label = {
+                    Text(item.title)
                 })
             }
         }
