@@ -73,7 +73,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -121,7 +120,7 @@
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -164,15 +163,6 @@ Don't forget to give the project a star! Thanks again!
 <a href="https://github.com/cuappdev/hustle-android/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=cuappdev/hustle-android" alt="contrib.rocks image" />
 </a>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the project_license. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
