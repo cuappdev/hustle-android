@@ -42,7 +42,7 @@ android {
             )
             buildConfigField(
                 "String",
-                "GOOGLE_AUTH_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_CLIENT_ID")}\""
+                "GOOGLE_AUTH_WEB_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_WEB_CLIENT_ID")}\""
             )
             buildConfigField(
                 "String",
@@ -53,7 +53,7 @@ android {
         debug {
             buildConfigField(
                 "String",
-                "GOOGLE_AUTH_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_CLIENT_ID")}\""
+                "GOOGLE_AUTH_WEB_CLIENT_ID", "\"${secrets.getProperty("GOOGLE_AUTH_WEB_CLIENT_ID")}\""
             )
             buildConfigField(
                 "String",

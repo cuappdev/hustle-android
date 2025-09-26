@@ -6,7 +6,7 @@ import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
-import com.cornellappdev.hustle.R
+import com.cornellappdev.hustle.BuildConfig
 import com.cornellappdev.hustle.data.model.user.AuthResult
 import com.cornellappdev.hustle.data.model.user.InvalidEmailDomainException
 import com.cornellappdev.hustle.data.model.user.User
@@ -87,7 +87,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     private suspend fun getGoogleCredential(): CustomCredential {
         val googleIdOption = GetGoogleIdOption.Builder()
-            .setServerClientId(context.getString(R.string.default_web_client_id))
+            .setServerClientId(BuildConfig.GOOGLE_AUTH_WEB_CLIENT_ID)
             .setFilterByAuthorizedAccounts(false).build()
 
         val request = GetCredentialRequest.Builder().addCredentialOption(googleIdOption).build()
