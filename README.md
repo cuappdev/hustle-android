@@ -22,7 +22,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![project_license][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -197,7 +196,7 @@ Distributed under the project_license. See `LICENSE.txt` for more information.
 [issues-shield]: https://img.shields.io/github/issues/cuappdev/hustle-android.svg?style=for-the-badge
 [issues-url]: https://github.com/cuappdev/hustle-android/issues
 [license-shield]: https://img.shields.io/github/license/cuappdev/hustle-android.svg?style=for-the-badge
-[license-url]: https://github.com/cuappdev/hustle-android/blob/master/LICENSE.txt
+[license-url]: https://github.com/cuappdev/hustle-android/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/company/cornellappdev
 [product-screenshot]: images/screenshot.png
