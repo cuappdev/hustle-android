@@ -4,11 +4,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.cornellappdev.hustle.ui.navigation.FavoritesDestination
-import com.cornellappdev.hustle.ui.navigation.FavoritesTab
+import com.cornellappdev.hustle.ui.navigation.MessagesDestination
+import com.cornellappdev.hustle.ui.navigation.MessagesTab
 
-fun NavGraphBuilder.favoritesNavGraph(navController: NavHostController) {
-    navigation<FavoritesTab>(startDestination = FavoritesDestination.Favorites) {
-        composable<FavoritesDestination.Favorites> {}
+fun NavGraphBuilder.messagesNavGraph(navController: NavHostController) {
+    navigation<MessagesTab>(startDestination = MessagesDestination.Messages) {
+        composable<MessagesDestination.Messages> {}
     }
 }
