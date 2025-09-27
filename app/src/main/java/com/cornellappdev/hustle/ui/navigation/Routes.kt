@@ -5,10 +5,13 @@ import kotlinx.serialization.Serializable
 sealed interface AppDestination
 
 @Serializable
+data object Onboarding: AppDestination
+
+@Serializable
 data object HomeTab : AppDestination
 
 @Serializable
-data object FavoritesTab : AppDestination
+data object MessagesTab : AppDestination
 
 @Serializable
 data object ProfileTab : AppDestination
@@ -21,9 +24,9 @@ sealed interface HomeDestination : AppDestination {
     data class ServiceDetail(val serviceId: String) : HomeDestination
 }
 
-sealed interface FavoritesDestination : AppDestination {
+sealed interface MessagesDestination : AppDestination {
     @Serializable
-    data object Favorites : FavoritesDestination
+    data object Messages : MessagesDestination
 }
 
 sealed interface ProfileDestination : AppDestination {
@@ -32,4 +35,9 @@ sealed interface ProfileDestination : AppDestination {
 
     @Serializable
     data object EditProfile : ProfileDestination
+}
+
+sealed interface OnboardingDestination: AppDestination {
+    @Serializable
+    data object SignIn : OnboardingDestination
 }
