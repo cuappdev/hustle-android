@@ -6,3 +6,5 @@ data class User(
     val displayName: String?,
     val photoUrl: String?,
 )
+
+class InvalidEmailDomainException(message: String) : Exception(message)

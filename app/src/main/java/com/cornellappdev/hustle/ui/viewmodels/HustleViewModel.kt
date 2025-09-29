@@ -8,7 +8,15 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
+sealed class ActionState {
+    object Loading : ActionState()
+    data class Error(val message: String) : ActionState()
+    object Success : ActionState()
+    object Idle : ActionState()
+}
 
 abstract class HustleViewModel<UiState>(initialUiState: UiState) : ViewModel() {
     private val _uiStateFlow = MutableStateFlow(initialUiState)
@@ -25,7 +33,7 @@ abstract class HustleViewModel<UiState>(initialUiState: UiState) : ViewModel() {
      * @param mutation The mutation to apply to the current UI state.
      */
     fun applyMutation(mutation: UiState.() -> UiState) {
-        _uiStateFlow.value = _uiStateFlow.value.mutation()
+        _uiStateFlow.update(mutation)
     }
 
     /**
