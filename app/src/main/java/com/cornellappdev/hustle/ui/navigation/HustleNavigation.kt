@@ -12,6 +12,7 @@ import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.onboardingNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
+import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.onboarding.AuthViewModel
 
 @Composable
@@ -47,17 +48,21 @@ fun HustleNavigation(
         ) {
             onboardingNavGraph(
                 signInWithGoogle = authViewModel::signInWithGoogle,
-                isLoading = authUiState.isLoading,
-                errorMessage = authUiState.errorMessage,
-                clearError = authViewModel::clearError
+                isLoading = authUiState.actionState == ActionState.Loading,
+                errorMessage = when (authUiState.actionState) {
+                    is ActionState.Error -> authUiState.actionState.message
+                    else -> null
+                },
+                clearError = authViewModel::clearActionState
 
             )
             homeNavGraph(navController = navController)
             messagesNavGraph(navController = navController)
             profileNavGraph(
-                onSignOut = {
-                    authViewModel.signOut()
-                })
+                user = authUiState.user,
+                onSignOut = authViewModel::signOut,
+                isLoading = authUiState.actionState == ActionState.Loading
+            )
         }
     }
 
