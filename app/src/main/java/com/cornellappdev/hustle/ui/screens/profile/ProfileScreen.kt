@@ -16,27 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil3.compose.AsyncImage
-import com.cornellappdev.hustle.ui.viewmodels.onboarding.AuthUiState
-import com.cornellappdev.hustle.ui.viewmodels.onboarding.AuthViewModel
+import com.cornellappdev.hustle.data.model.user.User
 
 @Composable
 fun ProfileScreen(
+    user: User?,
     onSignOut: () -> Unit,
-    modifier: Modifier = Modifier,
-    authViewModel: AuthViewModel = hiltViewModel()
-) {
-    val authUiState = authViewModel.collectUiStateValue()
-
-    ProfileScreenContent(
-        signOut = onSignOut, authUiState = authUiState, modifier = modifier
-    )
-}
-
-@Composable
-private fun ProfileScreenContent(
-    signOut: () -> Unit, authUiState: AuthUiState, modifier: Modifier = Modifier
+    isLoading: Boolean,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -46,7 +34,7 @@ private fun ProfileScreenContent(
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         // User Info
-        authUiState.user?.let { user ->
+        user?.let { user ->
             AsyncImage(
                 model = user.photoUrl,
                 contentDescription = "Profile picture",
@@ -66,11 +54,11 @@ private fun ProfileScreenContent(
 
         // Sign Out Button
         OutlinedButton(
-            onClick = { signOut() },
-            enabled = !authUiState.isLoading,
+            onClick = onSignOut,
+            enabled = !isLoading,
             modifier = Modifier.fillMaxWidth()
         ) {
-            if (authUiState.isLoading) {
+            if (isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(20.dp), strokeWidth = 2.dp
                 )
@@ -84,9 +72,14 @@ private fun ProfileScreenContent(
 @Preview(showBackground = true)
 @Composable
 private fun ProfileScreenPreview() {
-    ProfileScreenContent(
-        signOut = {}, authUiState = AuthUiState(
-            isLoading = false, user = null
-        )
+    ProfileScreen(
+        user = User(
+            firebaseUid = "1",
+            displayName = "John Doe",
+            email = "jd123@cornell.edu",
+            photoUrl = null
+        ),
+        onSignOut = {},
+        isLoading = false
     )
 }
