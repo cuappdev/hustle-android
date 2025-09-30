@@ -11,13 +11,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-sealed class ActionState {
-    object Loading : ActionState()
-    data class Error(val message: String) : ActionState()
-    object Success : ActionState()
-    object Idle : ActionState()
-}
-
 abstract class HustleViewModel<UiState>(initialUiState: UiState) : ViewModel() {
     private val _uiStateFlow = MutableStateFlow(initialUiState)
     val uiStateFlow: StateFlow<UiState> = _uiStateFlow.asStateFlow()
