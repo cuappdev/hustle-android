@@ -21,9 +21,9 @@ import com.cornellappdev.hustle.data.model.user.User
 
 @Composable
 fun ProfileScreen(
-    user: User?,
+    user: User,
     onSignOut: () -> Unit,
-    isLoading: Boolean,
+    isSignOutLoading: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -34,31 +34,29 @@ fun ProfileScreen(
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         // User Info
-        user?.let { user ->
-            AsyncImage(
-                model = user.photoUrl,
-                contentDescription = "Profile picture",
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(CircleShape)
-            )
+        AsyncImage(
+            model = user.photoUrl,
+            contentDescription = "Profile picture",
+            modifier = Modifier
+                .size(120.dp)
+                .clip(CircleShape)
+        )
 
-            Text(
-                text = user.displayName ?: "Unknown User"
-            )
+        Text(
+            text = user.displayName ?: "Unknown User"
+        )
 
-            Text(
-                text = user.email ?: ""
-            )
-        }
+        Text(
+            text = user.email ?: ""
+        )
 
         // Sign Out Button
         OutlinedButton(
             onClick = onSignOut,
-            enabled = !isLoading,
+            enabled = !isSignOutLoading,
             modifier = Modifier.fillMaxWidth()
         ) {
-            if (isLoading) {
+            if (isSignOutLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(20.dp), strokeWidth = 2.dp
                 )
@@ -80,6 +78,6 @@ private fun ProfileScreenPreview() {
             photoUrl = null
         ),
         onSignOut = {},
-        isLoading = false
+        isSignOutLoading = false
     )
 }

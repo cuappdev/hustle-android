@@ -15,10 +15,10 @@ import com.cornellappdev.hustle.ui.components.onboarding.GoogleSignInButton
 
 @Composable
 fun SignInScreen(
-    signInWithGoogle: () -> Unit,
-    isLoading: Boolean,
+    onGoogleSignInButtonClick: () -> Unit,
+    isSignInLoading: Boolean,
     errorMessage: String?,
-    clearError: () -> Unit,
+    onDismissError: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
@@ -28,13 +28,13 @@ fun SignInScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             GoogleSignInButton(
-                onClick = signInWithGoogle, isLoading = isLoading
+                onClick = onGoogleSignInButtonClick, isLoading = isSignInLoading
             )
         }
         errorMessage?.let { error ->
             ErrorMessage(
                 message = error,
-                onDismiss = clearError,
+                onDismiss = onDismissError,
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
@@ -54,8 +54,8 @@ private fun SignInScreenPreview(
     @PreviewParameter(SignInErrorMessageProvider::class) errorMessage: String?
 ) {
     SignInScreen(
-        signInWithGoogle = {},
-        isLoading = false,
+        onGoogleSignInButtonClick = {},
+        isSignInLoading = false,
         errorMessage = errorMessage,
-        clearError = {})
+        onDismissError = {})
 }
