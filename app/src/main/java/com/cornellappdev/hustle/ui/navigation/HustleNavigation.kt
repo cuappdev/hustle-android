@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.cornellappdev.hustle.ui.navigation.navgraphs.favoritesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
+import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
 
 @Composable
@@ -23,7 +23,7 @@ fun HustleNavigation() {
             modifier = Modifier.padding(innerPadding)
         ) {
             homeNavGraph(navController = navController)
-            favoritesNavGraph(navController = navController)
+            messagesNavGraph(navController = navController)
             profileNavGraph(navController = navController)
         }
     }
