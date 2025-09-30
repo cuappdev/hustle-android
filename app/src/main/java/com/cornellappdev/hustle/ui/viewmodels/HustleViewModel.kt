@@ -1,4 +1,4 @@
-package com.cornellappdev.hustle.ui
+package com.cornellappdev.hustle.ui.viewmodels
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
@@ -8,8 +8,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
 
 abstract class HustleViewModel<UiState>(initialUiState: UiState) : ViewModel() {
     private val _uiStateFlow = MutableStateFlow(initialUiState)
@@ -26,7 +26,7 @@ abstract class HustleViewModel<UiState>(initialUiState: UiState) : ViewModel() {
      * @param mutation The mutation to apply to the current UI state.
      */
     fun applyMutation(mutation: UiState.() -> UiState) {
-        _uiStateFlow.value = _uiStateFlow.value.mutation()
+        _uiStateFlow.update(mutation)
     }
 
     /**
