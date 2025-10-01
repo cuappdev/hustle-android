@@ -5,7 +5,7 @@ import com.cornellappdev.hustle.data.model.user.User
 import com.cornellappdev.hustle.data.repository.AuthRepository
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.HustleViewModel
-import com.cornellappdev.hustle.util.auth.executeAuthAction
+import com.cornellappdev.hustle.util.viewmodels.executeActionStatefully
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,8 +31,8 @@ class ProfileScreenViewModel @Inject constructor(
     }
 
     fun signOut() {
-        executeAuthAction(
-            authAction = { authRepository.signOut() },
+        executeActionStatefully(
+            action = { authRepository.signOut() },
             updateActionState = { copy(authActionState = it) })
     }
 }

@@ -1,17 +1,17 @@
-package com.cornellappdev.hustle.util.auth
+package com.cornellappdev.hustle.util.viewmodels
 
 import androidx.lifecycle.viewModelScope
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.HustleViewModel
 import kotlinx.coroutines.launch
 
-fun <UiState> HustleViewModel<UiState>.executeAuthAction(
-    authAction: suspend () -> Result<*>,
+fun <UiState> HustleViewModel<UiState>.executeActionStatefully(
+    action: suspend () -> Result<*>,
     updateActionState: UiState.(ActionState) -> UiState
 ) {
     viewModelScope.launch {
         applyMutation { updateActionState(ActionState.Loading) }
-        authAction()
+        action()
             .onSuccess {
                 applyMutation { updateActionState(ActionState.Success) }
             }
@@ -19,7 +19,7 @@ fun <UiState> HustleViewModel<UiState>.executeAuthAction(
                 applyMutation {
                     updateActionState(
                         ActionState.Error(
-                            exception.message ?: "Authentication failed"
+                            exception.message ?: "An unknown error occurred"
                         )
                     )
                 }

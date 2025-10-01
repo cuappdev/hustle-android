@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.cornellappdev.hustle.data.repository.AuthRepository
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.HustleViewModel
-import com.cornellappdev.hustle.util.auth.executeAuthAction
+import com.cornellappdev.hustle.util.viewmodels.executeActionStatefully
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,8 +30,8 @@ class SignInScreenViewModel @Inject constructor(
     }
 
     fun signInWithGoogle() {
-        executeAuthAction(
-            authAction = { authRepository.signInWithGoogle() },
+        executeActionStatefully(
+            action = { authRepository.signInWithGoogle() },
             updateActionState = { copy(actionState = it) })
     }
 
