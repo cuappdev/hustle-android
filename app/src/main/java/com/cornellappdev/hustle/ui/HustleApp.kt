@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import com.cornellappdev.hustle.ui.navigation.HustleNavigation
 
 @Composable
-fun HustleApp() {
-    HustleNavigation()
+fun HustleApp(
+    isSignedIn: Boolean
+) {
+    HustleNavigation(isSignedIn)
 }

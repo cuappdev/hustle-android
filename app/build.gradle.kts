@@ -119,6 +119,8 @@ dependencies {
     // Coil Image Loading
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    // Splash Screen API
+    implementation(libs.androidx.splashscreen)
 }
 
 // Allow references to generated code

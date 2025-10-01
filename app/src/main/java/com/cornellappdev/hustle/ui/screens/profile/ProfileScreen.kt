@@ -11,16 +11,43 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.cornellappdev.hustle.data.model.user.User
+import com.cornellappdev.hustle.ui.viewmodels.ActionState
+import com.cornellappdev.hustle.ui.viewmodels.profile.ProfileScreenViewModel
 
 @Composable
 fun ProfileScreen(
+    navigateToSignIn: () -> Unit,
+    modifier: Modifier = Modifier,
+    profileScreenViewModel: ProfileScreenViewModel = hiltViewModel()
+) {
+    val profileUiState = profileScreenViewModel.collectUiStateValue()
+    val user = profileUiState.user
+
+    LaunchedEffect(user) {
+        if (user == null) navigateToSignIn()
+    }
+
+    user?.let {
+        ProfileScreenContent(
+            user = it,
+            onSignOut = profileScreenViewModel::signOut,
+            isSignOutLoading = profileUiState.authActionState is ActionState.Loading,
+            modifier = modifier
+        )
+    }
+}
+
+@Composable
+private fun ProfileScreenContent(
     user: User,
     onSignOut: () -> Unit,
     isSignOutLoading: Boolean,
@@ -42,13 +69,9 @@ fun ProfileScreen(
                 .clip(CircleShape)
         )
 
-        Text(
-            text = user.displayName ?: "Unknown User"
-        )
+        Text(text = user.displayName ?: "Unknown User")
 
-        Text(
-            text = user.email ?: ""
-        )
+        Text(text = user.email ?: "")
 
         // Sign Out Button
         OutlinedButton(
@@ -70,14 +93,12 @@ fun ProfileScreen(
 @Preview(showBackground = true)
 @Composable
 private fun ProfileScreenPreview() {
-    ProfileScreen(
+    ProfileScreenContent(
         user = User(
             firebaseUid = "1",
             displayName = "John Doe",
             email = "jd123@cornell.edu",
             photoUrl = null
-        ),
-        onSignOut = {},
-        isSignOutLoading = false
+        ), onSignOut = {}, isSignOutLoading = false
     )
 }

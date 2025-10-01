@@ -38,6 +38,7 @@ class AuthRepositoryImpl @Inject constructor(
     override val currentUserFlow: StateFlow<User?> = _currentUserFlow.asStateFlow()
 
     init {
+        _currentUserFlow.value = firebaseAuth.currentUser?.toUser()
         firebaseAuth.addAuthStateListener {
             _currentUserFlow.value = it.currentUser?.toUser()
         }

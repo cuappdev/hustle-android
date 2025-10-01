@@ -8,20 +8,29 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
+import com.cornellappdev.hustle.ui.navigation.navgraphs.onboardingNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
 
 @Composable
-fun HustleNavigation() {
+fun HustleNavigation(
+    isSignedIn: Boolean = false
+) {
     val navController = rememberNavController()
+    val startDestination = if (isSignedIn) HomeTab else Onboarding
 
     Scaffold(
-        bottomBar = { BottomNavigationBar(navController = navController) }
+        bottomBar = {
+            if (isSignedIn) {
+                BottomNavigationBar(navController = navController)
+            }
+        }
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = HomeTab,
+            startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
+            onboardingNavGraph(navController = navController)
             homeNavGraph(navController = navController)
             messagesNavGraph(navController = navController)
             profileNavGraph(navController = navController)
