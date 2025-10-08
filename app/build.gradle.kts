@@ -116,6 +116,8 @@ dependencies {
     implementation(libs.google.id)
     // Firebase Analytics
     implementation(libs.firebase.analytics)
+    // Firebase Messaging
+    implementation(libs.firebase.messaging)
     // Coil Image Loading
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
