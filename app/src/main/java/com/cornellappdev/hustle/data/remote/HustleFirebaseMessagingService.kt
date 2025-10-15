@@ -65,10 +65,12 @@ class HustleFirebaseMessagingService : FirebaseMessagingService() {
 
     private fun showNotification(title: String, body: String, data: Map<String, String>) {
         val intent = Intent(this, MainActivity::class.java).apply {
+            // new task for launching activity from service and clear top to avoid multiple activity instances
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             data.forEach { (key, value) -> putExtra(key, value) }
         }
 
+        // update current to ensure each notification has correct data and immutable for security best practices
         val pendingIntent = PendingIntent.getActivity(
             this,
             data.hashCode(),
