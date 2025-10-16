@@ -10,6 +10,7 @@ import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.onboardingNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
+import com.cornellappdev.hustle.ui.theme.HustleColors
 
 @Composable
 fun HustleNavigation(
@@ -23,7 +24,8 @@ fun HustleNavigation(
             if (isSignedIn) {
                 BottomNavigationBar(navController = navController)
             }
-        }
+        },
+        containerColor = if (!isSignedIn) HustleColors.hustleGreen else HustleColors.white
     ) { innerPadding ->
         NavHost(
             navController = navController,

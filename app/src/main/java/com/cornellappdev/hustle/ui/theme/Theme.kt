@@ -10,16 +10,17 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+// TODO: Replace with dark mode colors when decided
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = HustleColors.primary,
+    secondary = HustleColors.secondary,
+    tertiary = HustleColors.tertiary
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = HustleColors.primary,
+    secondary = HustleColors.secondary,
+    tertiary = HustleColors.tertiary
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -51,7 +52,7 @@ fun HustleTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = HustleTypography,
         content = content
     )
 }

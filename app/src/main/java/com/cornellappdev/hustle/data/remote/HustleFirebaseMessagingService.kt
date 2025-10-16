@@ -78,11 +78,10 @@ class HustleFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // TODO: Replace with actual app icon
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setContentText(body)
-            .setSmallIcon(R.drawable.ic_google)
+            .setSmallIcon(R.drawable.ic_hustle_logo)
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
