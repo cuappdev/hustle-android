@@ -1,6 +1,7 @@
 package com.cornellappdev.hustle.ui.navigation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,7 +11,6 @@ import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.onboardingNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
-import com.cornellappdev.hustle.ui.theme.HustleColors
 
 @Composable
 fun HustleNavigation(
@@ -25,7 +25,7 @@ fun HustleNavigation(
                 BottomNavigationBar(navController = navController)
             }
         },
-        containerColor = if (!isSignedIn) HustleColors.hustleGreen else HustleColors.white
+        containerColor = if (!isSignedIn) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
     ) { innerPadding ->
         NavHost(
             navController = navController,

@@ -12,15 +12,37 @@ import androidx.compose.ui.platform.LocalContext
 
 // TODO: Replace with dark mode colors when decided
 private val DarkColorScheme = darkColorScheme(
-    primary = HustleColors.primary,
-    secondary = HustleColors.secondary,
-    tertiary = HustleColors.tertiary
+    primary = HustleColors.hustleGreen,
+    onPrimary = HustleColors.white,
+    secondary = HustleColors.accentGreen,
+    onSecondary = HustleColors.hustleGreen,
+    surface = HustleColors.white,
+    onSurface = HustleColors.primaryBlack,
+    onSurfaceVariant = HustleColors.secondaryGray,
+    surfaceVariant = HustleColors.wash,
+    surfaceContainer = HustleColors.wash,
+    surfaceContainerHigh = HustleColors.stroke,
+    background = HustleColors.white,
+    onBackground = HustleColors.primaryBlack,
+    outline = HustleColors.stroke,
+    outlineVariant = HustleColors.iconInactive
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = HustleColors.primary,
-    secondary = HustleColors.secondary,
-    tertiary = HustleColors.tertiary
+    primary = HustleColors.hustleGreen,
+    onPrimary = HustleColors.white,
+    secondary = HustleColors.accentGreen,
+    onSecondary = HustleColors.hustleGreen,
+    surface = HustleColors.white,
+    onSurface = HustleColors.primaryBlack,
+    onSurfaceVariant = HustleColors.secondaryGray,
+    surfaceVariant = HustleColors.wash,
+    surfaceContainer = HustleColors.wash,
+    surfaceContainerHigh = HustleColors.stroke,
+    background = HustleColors.white,
+    onBackground = HustleColors.primaryBlack,
+    outline = HustleColors.stroke,
+    outlineVariant = HustleColors.iconInactive
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

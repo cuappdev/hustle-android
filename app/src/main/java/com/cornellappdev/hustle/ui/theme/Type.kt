@@ -12,6 +12,7 @@ import com.cornellappdev.hustle.R
 val InstrumentSans = FontFamily(
     Font(R.font.instrument_sans_regular, FontWeight.Normal),
     Font(R.font.instrument_sans_medium, FontWeight.Medium),
+    Font(R.font.instrument_sans_bold, FontWeight.Bold),
     Font(R.font.instrument_sans_bold_italic, FontWeight.Bold, FontStyle.Italic)
 )
 
@@ -21,20 +22,25 @@ val HelveticaNeue = FontFamily(
     Font(R.font.helvetica_neue_bold, FontWeight.Bold)
 )
 val HustleTypography = Typography(
+    displayLarge = TextStyle(
+        fontFamily = InstrumentSans,
+        fontWeight = FontWeight.Bold,
+        fontSize = 64.sp
+    ),
     headlineLarge = TextStyle(
         fontFamily = InstrumentSans,
         fontWeight = FontWeight.Medium,
-        fontSize = 32.sp
+        fontSize = 36.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = InstrumentSans,
         fontWeight = FontWeight.Medium,
-        fontSize = 22.sp
+        fontSize = 24.sp
     ),
     headlineSmall = TextStyle(
         fontFamily = InstrumentSans,
-        fontWeight = FontWeight.Medium,
-        fontSize = 20.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp
     ),
     bodyLarge = TextStyle(
         fontFamily = InstrumentSans,
@@ -48,8 +54,8 @@ val HustleTypography = Typography(
     ),
     titleLarge = TextStyle(
         fontFamily = HelveticaNeue,
-        fontWeight = FontWeight.Medium,
-        fontSize = 18.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp
     ),
     titleMedium = TextStyle(
         fontFamily = HelveticaNeue,
@@ -70,10 +76,5 @@ val HustleTypography = Typography(
         fontFamily = HelveticaNeue,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = InstrumentSans,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    ),
+    )
 )

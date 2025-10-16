@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -30,6 +31,7 @@ import com.cornellappdev.hustle.ui.components.general.ErrorMessage
 import com.cornellappdev.hustle.ui.components.onboarding.SignInButton
 import com.cornellappdev.hustle.ui.theme.HustleColors
 import com.cornellappdev.hustle.ui.theme.HustleSpacing
+import com.cornellappdev.hustle.ui.theme.HustleTheme
 import com.cornellappdev.hustle.ui.theme.InstrumentSans
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.onboarding.SignInScreenViewModel
@@ -144,9 +146,7 @@ private fun WelcomeText() {
         Text(
             text = "Browse. Buy. Book.",
             color = HustleColors.white,
-            fontFamily = InstrumentSans,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.headlineMedium
         )
     }
 }
@@ -163,9 +163,11 @@ class SignInErrorMessageProvider : PreviewParameterProvider<String?> {
 private fun SignInScreenPreview(
     @PreviewParameter(SignInErrorMessageProvider::class) errorMessage: String?
 ) {
-    SignInScreenContent(
-        onGoogleSignInButtonClick = {},
-        isSignInLoading = false,
-        errorMessage = errorMessage,
-        onDismissError = {})
+    HustleTheme(dynamicColor = false) {
+        SignInScreenContent(
+            onGoogleSignInButtonClick = {},
+            isSignInLoading = false,
+            errorMessage = errorMessage,
+            onDismissError = {})
+    }
 }
