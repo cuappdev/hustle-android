@@ -81,52 +81,7 @@ private fun SignInScreenContent(
             ),
             modifier = Modifier.fillMaxSize()
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(HustleSpacing.medium)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_hustle_logo),
-                    contentDescription = "Hustle Logo",
-                    tint = Color.Unspecified
-                )
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(HustleSpacing.extraSmall)
-                ) {
-                    Text(
-                        buildAnnotatedString {
-                            withStyle(
-                                style = SpanStyle(
-                                    color = HustleColors.white,
-                                    fontFamily = InstrumentSans,
-                                    fontSize = 36.sp,
-                                )
-                            ) {
-                                append("Welcome to ")
-                            }
-                            withStyle(
-                                style = SpanStyle(
-                                    color = HustleColors.white,
-                                    fontFamily = InstrumentSans,
-                                    fontSize = 36.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    fontStyle = FontStyle.Italic
-                                )
-                            ) {
-                                append("Hustle")
-                            }
-                        }
-                    )
-                    Text(
-                        text = "Browse. Buy. Book.",
-                        color = HustleColors.white,
-                        fontFamily = InstrumentSans,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
+            WelcomeHeader()
             SignInButton(
                 onClick = onGoogleSignInButtonClick, isLoading = isSignInLoading
             )
@@ -138,6 +93,61 @@ private fun SignInScreenContent(
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
+    }
+}
+
+@Composable
+private fun WelcomeHeader() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(HustleSpacing.medium)
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_hustle_logo),
+            contentDescription = "Hustle Logo",
+            tint = Color.Unspecified
+        )
+        WelcomeText()
+    }
+}
+
+@Composable
+private fun WelcomeText() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(HustleSpacing.extraSmall)
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        color = HustleColors.white,
+                        fontFamily = InstrumentSans,
+                        fontSize = 36.sp,
+                    )
+                ) {
+                    append("Welcome to ")
+                }
+                withStyle(
+                    style = SpanStyle(
+                        color = HustleColors.white,
+                        fontFamily = InstrumentSans,
+                        fontSize = 36.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                ) {
+                    append("Hustle")
+                }
+            }
+        )
+        Text(
+            text = "Browse. Buy. Book.",
+            color = HustleColors.white,
+            fontFamily = InstrumentSans,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Medium
+        )
     }
 }
 
