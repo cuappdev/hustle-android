@@ -31,7 +31,7 @@
 <div align="center">
   <a href="https://github.com/cuappdev/hustle-android">
     <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
-    <img width="80" height="80" alt="image" src="https://github.com/user-attachments/assets/817d8190-917d-494f-a91f-650d948fd49d" />
+    <img width="80" height="80" alt="image" src="https://github.com/user-attachments/assets/3a3cba8a-30b8-4bf6-ae0f-c687c4eb8af1" />
 
   </a>
 
