@@ -1,19 +1,38 @@
 package com.cornellappdev.hustle.ui.screens.onboarding
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.cornellappdev.hustle.R
 import com.cornellappdev.hustle.ui.components.general.ErrorMessage
-import com.cornellappdev.hustle.ui.components.onboarding.GoogleSignInButton
+import com.cornellappdev.hustle.ui.components.onboarding.SignInButton
+import com.cornellappdev.hustle.ui.theme.HustleColors
+import com.cornellappdev.hustle.ui.theme.HustleSpacing
+import com.cornellappdev.hustle.ui.theme.HustleTheme
+import com.cornellappdev.hustle.ui.theme.InstrumentSans
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.onboarding.SignInScreenViewModel
 
@@ -49,13 +68,23 @@ private fun SignInScreenContent(
     onDismissError: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(HustleColors.hustleGreen)
+            .padding(
+                horizontal = HustleSpacing.leftRightMargin
+            )
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.spacedBy(
+                89.dp, alignment = Alignment.CenterVertically
+            ),
             modifier = Modifier.fillMaxSize()
         ) {
-            GoogleSignInButton(
+            WelcomeHeader()
+            SignInButton(
                 onClick = onGoogleSignInButtonClick, isLoading = isSignInLoading
             )
         }
@@ -66,6 +95,59 @@ private fun SignInScreenContent(
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
+    }
+}
+
+@Composable
+private fun WelcomeHeader() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(HustleSpacing.medium)
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_hustle_logo),
+            contentDescription = "Hustle Logo",
+            tint = Color.Unspecified
+        )
+        WelcomeText()
+    }
+}
+
+@Composable
+private fun WelcomeText() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(HustleSpacing.extraSmall)
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        color = HustleColors.white,
+                        fontFamily = InstrumentSans,
+                        fontSize = 36.sp,
+                    )
+                ) {
+                    append("Welcome to ")
+                }
+                withStyle(
+                    style = SpanStyle(
+                        color = HustleColors.white,
+                        fontFamily = InstrumentSans,
+                        fontSize = 36.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                ) {
+                    append("Hustle")
+                }
+            }
+        )
+        Text(
+            text = "Browse. Buy. Book.",
+            color = HustleColors.white,
+            style = MaterialTheme.typography.headlineMedium
+        )
     }
 }
 
@@ -81,9 +163,11 @@ class SignInErrorMessageProvider : PreviewParameterProvider<String?> {
 private fun SignInScreenPreview(
     @PreviewParameter(SignInErrorMessageProvider::class) errorMessage: String?
 ) {
-    SignInScreenContent(
-        onGoogleSignInButtonClick = {},
-        isSignInLoading = false,
-        errorMessage = errorMessage,
-        onDismissError = {})
+    HustleTheme(dynamicColor = false) {
+        SignInScreenContent(
+            onGoogleSignInButtonClick = {},
+            isSignInLoading = false,
+            errorMessage = errorMessage,
+            onDismissError = {})
+    }
 }

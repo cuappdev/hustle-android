@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            HustleTheme {
+            HustleTheme(dynamicColor = false) {
                 val rootUiState = rootViewModel.collectUiStateValue()
                 if (!rootUiState.isLoading) {
                     HustleApp(isSignedIn = rootUiState.isSignedIn)

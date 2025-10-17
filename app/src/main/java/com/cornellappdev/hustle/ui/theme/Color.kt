@@ -2,10 +2,15 @@ package com.cornellappdev.hustle.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+object HustleColors {
+    val hustleGreen = Color(0xFF004346)
+    val accentGreen = Color(0xFFD5EFB4)
+    val primaryBlack = Color(0xFF000000)
+    val tertiaryGray = Color(0xFF2D2D2D)
+    val secondaryGray = Color(0xFF7D8288)
+    val iconInactive = Color(0xFFBEBEBE)
+    val stroke = Color(0xFFD6D6D6)
+    val wash = Color(0xFFF5F5F5)
+    val tint = Color(0xFFB2B3B6)
+    val white = Color(0xFFFFFFFF)
+}
