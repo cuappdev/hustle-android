@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.cornellappdev.hustle.ui.theme.HustleColors
 import com.cornellappdev.hustle.ui.theme.HustleSpacing
 import com.cornellappdev.hustle.ui.theme.HustleTheme
 
@@ -31,10 +32,10 @@ fun SignInButton(
         enabled = !isLoading,
         modifier = modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = MaterialTheme.colorScheme.onSecondary,
-            disabledContainerColor = MaterialTheme.colorScheme.secondary,
-            disabledContentColor = MaterialTheme.colorScheme.onSecondary
+            containerColor = HustleColors.accentGreen,
+            contentColor = HustleColors.hustleGreen,
+            disabledContainerColor = HustleColors.accentGreen,
+            disabledContentColor = HustleColors.hustleGreen
         ),
         contentPadding = PaddingValues(
             vertical = HustleSpacing.medium
@@ -48,7 +49,7 @@ fun SignInButton(
         ) {
             if (isLoading) {
                 CircularProgressIndicator(
-                    color = MaterialTheme.colorScheme.onSecondary,
+                    color = HustleColors.hustleGreen,
                     modifier = Modifier.size(24.dp)
                 )
             }
