@@ -1,4 +1,4 @@
-package com.cornellappdev.hustle.data.repository
+package com.cornellappdev.hustle.data.repository.auth
 
 import android.content.Context
 import androidx.credentials.ClearCredentialStateRequest
@@ -6,8 +6,11 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import com.cornellappdev.hustle.BuildConfig
+import com.cornellappdev.hustle.data.local.auth.TokenManager
 import com.cornellappdev.hustle.data.model.user.InvalidEmailDomainException
 import com.cornellappdev.hustle.data.model.user.User
+import com.cornellappdev.hustle.data.model.user.VerifyTokenRequest
+import com.cornellappdev.hustle.data.remote.auth.AuthApiService
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
@@ -32,7 +35,9 @@ interface AuthRepository {
 class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val credentialManager: CredentialManager,
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val tokenManager: TokenManager,
+    private val authApiService: AuthApiService
 ) : AuthRepository {
     private val _currentUserFlow = MutableStateFlow<User?>(null)
     override val currentUserFlow: StateFlow<User?> = _currentUserFlow.asStateFlow()
@@ -55,6 +60,20 @@ class AuthRepositoryImpl @Inject constructor(
 
         val authCredential = GoogleAuthProvider.getCredential(googleIdTokenCredential.idToken, null)
         val authResult = firebaseAuth.signInWithCredential(authCredential).await()
+
+        val firebaseToken = authResult.user?.getIdToken(false)?.await()?.token
+            ?: throw Exception("Failed to retrieve Firebase token")
+
+        val response = authApiService.verifyToken(VerifyTokenRequest(firebaseToken))
+        if (response.isSuccessful) {
+            val tokenData = response.body() ?: throw Exception("Empty response body")
+            tokenManager.saveTokens(
+                accessToken = tokenData.accessToken,
+                refreshToken = tokenData.refreshToken
+            )
+        } else {
+            throw Exception("Token verification failed with code: ${response.code()}")
+        }
 
         authResult.user?.toUser() ?: throw Exception("Authentication failed")
     }

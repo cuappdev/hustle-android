@@ -2,7 +2,7 @@ package com.cornellappdev.hustle.ui.viewmodels.profile
 
 import androidx.lifecycle.viewModelScope
 import com.cornellappdev.hustle.data.model.user.User
-import com.cornellappdev.hustle.data.repository.AuthRepository
+import com.cornellappdev.hustle.data.repository.auth.AuthRepository
 import com.cornellappdev.hustle.ui.viewmodels.ActionState
 import com.cornellappdev.hustle.ui.viewmodels.HustleViewModel
 import com.cornellappdev.hustle.util.viewmodels.executeActionStatefully

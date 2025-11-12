@@ -2,12 +2,12 @@ package com.cornellappdev.hustle.di
 
 import android.content.Context
 import androidx.credentials.CredentialManager
-import com.cornellappdev.hustle.data.repository.AuthRepository
-import com.cornellappdev.hustle.data.repository.AuthRepositoryImpl
 import com.cornellappdev.hustle.data.repository.ExampleRepository
 import com.cornellappdev.hustle.data.repository.ExampleRepositoryImpl
 import com.cornellappdev.hustle.data.repository.FcmTokenRepository
 import com.cornellappdev.hustle.data.repository.FcmTokenRepositoryImpl
+import com.cornellappdev.hustle.data.repository.auth.AuthRepository
+import com.cornellappdev.hustle.data.repository.auth.AuthRepositoryImpl
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
