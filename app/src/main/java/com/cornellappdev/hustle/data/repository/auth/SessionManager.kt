@@ -6,8 +6,11 @@ import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Manages user session state, particularly notifying when a session has expired.
+ */
 @Singleton
-class SessionManager @Inject constructor(){
+class SessionManager @Inject constructor() {
     private val _sessionExpired = MutableSharedFlow<Unit>(
         replay = 0,
         extraBufferCapacity = 1,

@@ -7,6 +7,10 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Manages the secure storage and retrieval of authentication tokens (access and refresh tokens)
+ * using an encrypted DataStore.
+ */
 @Singleton
 class TokenManager @Inject constructor(
     private val userPreferencesDataStore: DataStore<UserPreferences>

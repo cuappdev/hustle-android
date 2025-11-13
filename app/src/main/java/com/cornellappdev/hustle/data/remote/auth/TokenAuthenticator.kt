@@ -16,6 +16,9 @@ import okhttp3.Response
 import okhttp3.Route
 import javax.inject.Inject
 
+/**
+ * An [Authenticator] that handles token expiration and refresh logic for HTTP requests.
+ */
 class TokenAuthenticator @Inject constructor(
     private val tokenManager: TokenManager,
     private val authApiService: AuthApiService,

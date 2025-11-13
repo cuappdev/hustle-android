@@ -6,6 +6,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
+/**
+ * [Interceptor] that adds the Authorization header with the access token to outgoing API requests.
+ */
 class AuthInterceptor @Inject constructor(
     private val tokenManager: TokenManager
 ) : Interceptor {

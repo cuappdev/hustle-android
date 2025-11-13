@@ -15,16 +15,15 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
-import javax.inject.Named
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-private const val BASE_API_URL = BuildConfig.BASE_API_URL
-private const val RETROFIT_BUILDER_NAME = "RetrofitBuilder"
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    private const val BASE_API_URL = BuildConfig.BASE_API_URL
+
     @Provides
     @Singleton
     fun provideJson(): Json {
@@ -43,12 +42,10 @@ object NetworkModule {
         }
     }
 
-    @Provides
-    @Singleton
-    @Named(RETROFIT_BUILDER_NAME)
-    fun provideRetrofitBuilder(json: Json): Retrofit.Builder {
-        return Retrofit.Builder()
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+    private fun Retrofit.Builder.applyBaseConfig(json: Json): Retrofit.Builder {
+        val contentType = "application/json".toMediaType()
+        return this
+            .addConverterFactory(json.asConverterFactory(contentType))
             .baseUrl(BASE_API_URL)
     }
 
@@ -56,7 +53,7 @@ object NetworkModule {
     @Singleton
     @Unauthenticated
     fun provideUnauthenticatedOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -81,19 +78,19 @@ object NetworkModule {
     @Singleton
     @Unauthenticated
     fun provideUnauthenticatedRetrofit(
-        @Named(RETROFIT_BUILDER_NAME) retrofitBuilder: Retrofit.Builder,
-        @Unauthenticated okHttpClient: OkHttpClient
+        @Unauthenticated okHttpClient: OkHttpClient,
+        json: Json
     ): Retrofit {
-        return retrofitBuilder.client(okHttpClient).build()
+        return Retrofit.Builder().client(okHttpClient).applyBaseConfig(json).build()
     }
 
     @Provides
     @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        @Named(RETROFIT_BUILDER_NAME) retrofitBuilder: Retrofit.Builder
+        json: Json
     ): Retrofit {
-        return retrofitBuilder.client(okHttpClient).build()
+        return Retrofit.Builder().client(okHttpClient).applyBaseConfig(json).build()
     }
 
     @Provides
