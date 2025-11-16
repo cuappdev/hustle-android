@@ -35,8 +35,8 @@ fun ServiceHorizontalCarouselSection(
         header()
         HorizontalUncontainedCarousel(
             state = carouselState,
-            itemWidth = 182.dp,
-            itemSpacing = HustleSpacing.small,
+            itemWidth = 186.dp,
+            itemSpacing = 4.dp,
             contentPadding = PaddingValues(horizontal = HustleSpacing.large),
         ) { i ->
             val service = serviceListings[i]
