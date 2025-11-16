@@ -11,6 +11,8 @@ import javax.crypto.spec.IvParameterSpec
 /**
  * Utility object for encrypting and decrypting data using Android's Keystore system.
  * Used to securely store sensitive information such as user tokens.
+ * The following video was used as a reference for this implementation:
+ * https://www.youtube.com/watch?v=XMaQNN9YpKk
  */
 object Crypto {
     private const val KEY_ALIAS = "HUSTLE_KEY_ALIAS"
