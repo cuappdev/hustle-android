@@ -2,8 +2,10 @@ package com.cornellappdev.hustle.ui.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,6 +17,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.cornellappdev.hustle.R
+import com.cornellappdev.hustle.ui.theme.HustleColors
 
 data class BottomNavigationItem<T : AppDestination>(
     val route: T,
@@ -29,6 +32,12 @@ val bottomNavigationItems = listOf(
         title = "Home",
         icon = R.drawable.ic_home,
         selectedIcon = R.drawable.ic_home,
+    ),
+    BottomNavigationItem(
+        route = LearnTab,
+        title = "Learn",
+        icon = R.drawable.ic_learn,
+        selectedIcon = R.drawable.ic_learn,
     ),
     BottomNavigationItem(
         route = MessagesTab,
@@ -56,17 +65,19 @@ fun BottomNavigationBar(navController: NavHostController) {
     }
 
     if (shouldShow) {
-        NavigationBar {
+        NavigationBar(
+            containerColor = MaterialTheme.colorScheme.background,
+        ) {
             bottomNavigationItems.forEach { item ->
                 val selected = currentDestination?.hierarchy?.any {
                     it.hasRoute(item.route::class)
                 } == true
 
-                NavigationBarItem(icon = {
+                NavigationBarItem(
+                    icon = {
                     Icon(
                         painter = painterResource(id = if (selected) item.selectedIcon else item.icon),
-                        contentDescription = item.title,
-                        tint = Color.Unspecified
+                        contentDescription = item.title
                     )
                 }, selected = selected, onClick = {
                     navController.navigate(item.route) {
@@ -77,8 +88,19 @@ fun BottomNavigationBar(navController: NavHostController) {
                         restoreState = true
                     }
                 }, label = {
-                    Text(item.title)
-                })
+                    Text(
+                        item.title,
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = HustleColors.hustleGreen,
+                        unselectedIconColor = Color.Unspecified,
+                        selectedTextColor = HustleColors.hustleGreen,
+                        unselectedTextColor = HustleColors.secondaryGray,
+                        indicatorColor = Color.Transparent
+                    )
+                )
             }
         }
     }
