@@ -12,11 +12,20 @@ import com.cornellappdev.hustle.ui.screens.home.HomeScreen
 fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
     navigation<HomeTab>(startDestination = HomeDestination.Home) {
         composable<HomeDestination.Home> {
-            HomeScreen()
+            HomeScreen(
+                navigateToServiceDetail = { serviceId ->
+                    navController.navigate(HomeDestination.ServiceDetail(serviceId))
+                },
+                navigateToCategorySubpage = { categoryType ->
+                    navController.navigate(HomeDestination.CategoryService(categoryType))
+                }
+            )
         }
 
         composable<HomeDestination.ServiceDetail> { backStackEntry ->
             val serviceId = backStackEntry.toRoute<HomeDestination.ServiceDetail>()
         }
+
+        composable<HomeDestination.CategoryService> {}
     }
 }
