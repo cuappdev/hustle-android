@@ -3,6 +3,7 @@ package com.cornellappdev.hustle.ui.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
@@ -18,6 +19,16 @@ fun HustleNavigation(
 ) {
     val navController = rememberNavController()
     val startDestination = if (isSignedIn) HomeTab else Onboarding
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
+
+    LaunchedEffect(isSignedIn) {
+        if (!isSignedIn && navController.currentDestination != Onboarding) {
+            navController.navigate(Onboarding) {
+                popUpTo(0) { inclusive = true }
+                launchSingleTop = true
+            }
+        }
+    }
 
     Scaffold(
         bottomBar = {

@@ -25,7 +25,7 @@ android {
 
     defaultConfig {
         applicationId = "com.cornellappdev.hustle"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -99,8 +99,7 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     // Retrofit and OkHttp Dependencies
     implementation(libs.retrofit)
-    implementation(libs.converter.moshi)
-    implementation(libs.moshi.kotlin)
+    implementation(libs.converter.kotlinx.serialization)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     // Lint Checks
@@ -123,6 +122,8 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     // Splash Screen API
     implementation(libs.androidx.splashscreen)
+    // DataStore Preferences
+    implementation(libs.androidx.datastore.preferences)
 }
 
 // Allow references to generated code
