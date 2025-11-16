@@ -72,7 +72,7 @@ fun HustleButton(
 
 @Preview(showBackground = true)
 @Composable
-fun HustleButtonPreview() {
+private fun HustleButtonPreview() {
     HustleTheme {
         HustleButton(
             onClick = {},
