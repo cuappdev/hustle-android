@@ -24,10 +24,10 @@ import com.cornellappdev.hustle.data.model.services.Service
 import com.cornellappdev.hustle.ui.components.home.MainContent
 import com.cornellappdev.hustle.ui.components.home.SearchContent
 import com.cornellappdev.hustle.ui.components.home.SearchHeader
-import com.cornellappdev.hustle.ui.navigation.CategoryType
 import com.cornellappdev.hustle.ui.theme.HustleSpacing
 import com.cornellappdev.hustle.ui.theme.HustleTheme
 import com.cornellappdev.hustle.ui.viewmodels.home.HomeScreenViewModel
+import com.cornellappdev.hustle.util.constants.CategoryType
 import com.cornellappdev.hustle.util.constants.TEST_RECENT_SEARCHES
 import com.cornellappdev.hustle.util.constants.TEST_SERVICES
 
@@ -48,35 +48,40 @@ fun HomeScreen(
     val recentlyViewedServiceListings = TEST_SERVICES
 
     HomeScreenContent(
-        queryState = queryState,
-        isSearchActive = isSearchActive,
+        homeScreenViewState = HomeScreenViewState(
+            queryState = queryState,
+            isSearchActive = isSearchActive,
+            popularRightNowListings = popularRightNowListings,
+            newOnHustleListings = newOnHustleListings,
+            servicesNearYouListings = servicesNearYouListings,
+            availableThisWeekListings = availableThisWeekListings,
+            recentSearches = recentSearches,
+            recentlyViewedServices = recentlyViewedServiceListings
+        ),
         onSearchActiveChange = { isActive -> isSearchActive = isActive },
-        popularRightNowListings = popularRightNowListings,
-        newOnHustleListings = newOnHustleListings,
-        servicesNearYouListings = servicesNearYouListings,
-        availableThisWeekListings = availableThisWeekListings,
-        recentSearches = recentSearches,
-        recentlyViewedServices = recentlyViewedServiceListings,
         onSearch = {},
         onSearchSuggestionClick = {},
         navigateToCategorySubpage = navigateToCategorySubpage,
         navigateToServiceDetail = navigateToServiceDetail,
         onFavoriteClick = {}
     )
-
 }
+
+data class HomeScreenViewState(
+    val queryState: TextFieldState,
+    val isSearchActive: Boolean,
+    val popularRightNowListings: List<Service>,
+    val newOnHustleListings: List<Service>,
+    val servicesNearYouListings: List<Service>,
+    val availableThisWeekListings: List<Service>,
+    val recentSearches: List<String>,
+    val recentlyViewedServices: List<Service>,
+)
 
 @Composable
 private fun HomeScreenContent(
-    queryState: TextFieldState,
-    isSearchActive: Boolean,
+    homeScreenViewState: HomeScreenViewState,
     onSearchActiveChange: (Boolean) -> Unit,
-    popularRightNowListings: List<Service>,
-    newOnHustleListings: List<Service>,
-    servicesNearYouListings: List<Service>,
-    availableThisWeekListings: List<Service>,
-    recentSearches: List<String>,
-    recentlyViewedServices: List<Service>,
     onSearch: () -> Unit,
     onSearchSuggestionClick: (String) -> Unit,
     navigateToCategorySubpage: (CategoryType) -> Unit,
@@ -89,14 +94,14 @@ private fun HomeScreenContent(
             .background(Color.White)
     ) {
         SearchHeader(
-            queryState = queryState,
-            isSearchActive = isSearchActive,
+            queryState = homeScreenViewState.queryState,
+            isSearchActive = homeScreenViewState.isSearchActive,
             onSearchActiveChange = onSearchActiveChange,
             onSearch = onSearch,
             modifier = Modifier.padding(horizontal = HustleSpacing.large)
         )
         AnimatedContent(
-            targetState = isSearchActive,
+            targetState = homeScreenViewState.isSearchActive,
             label = "HomeScreenContentAnimation",
             transitionSpec = {
                 fadeIn(animationSpec = tween(300)) togetherWith fadeOut(
@@ -108,18 +113,18 @@ private fun HomeScreenContent(
         ) { isSearchActive ->
             if (!isSearchActive) {
                 MainContent(
-                    popularRightNowListings = popularRightNowListings,
-                    newOnHustleListings = newOnHustleListings,
-                    servicesNearYouListings = servicesNearYouListings,
-                    availableThisWeekListings = availableThisWeekListings,
+                    popularRightNowListings = homeScreenViewState.popularRightNowListings,
+                    newOnHustleListings = homeScreenViewState.newOnHustleListings,
+                    servicesNearYouListings = homeScreenViewState.servicesNearYouListings,
+                    availableThisWeekListings = homeScreenViewState.availableThisWeekListings,
                     navigateToCategorySubpage = navigateToCategorySubpage,
                     navigateToServiceDetail = navigateToServiceDetail,
                     onFavoriteClick = onFavoriteClick
                 )
             } else {
                 SearchContent(
-                    recentSearches = recentSearches,
-                    recentlyViewedServices = recentlyViewedServices,
+                    recentSearches = homeScreenViewState.recentSearches,
+                    recentlyViewedServices = homeScreenViewState.recentlyViewedServices,
                     onSearchSuggestionClick = onSearchSuggestionClick,
                     navigateToServiceDetail = navigateToServiceDetail,
                     onFavoriteClick = onFavoriteClick
@@ -134,23 +139,19 @@ private fun HomeScreenContent(
 private fun HomeScreenPreview() {
     val queryState = rememberTextFieldState()
     var isSearchActive by remember { mutableStateOf(false) }
-    val popularRightNowListings = TEST_SERVICES
-    val newOnHustleListings = TEST_SERVICES
-    val servicesNearYouListings = TEST_SERVICES
-    val availableThisWeekListings = TEST_SERVICES
-    val recentSearches = TEST_RECENT_SEARCHES
-    val recentlyViewedServiceListings = TEST_SERVICES
     HustleTheme {
         HomeScreenContent(
-            queryState = queryState,
-            isSearchActive = isSearchActive,
+            homeScreenViewState = HomeScreenViewState(
+                queryState = queryState,
+                isSearchActive = isSearchActive,
+                popularRightNowListings = TEST_SERVICES,
+                newOnHustleListings = TEST_SERVICES,
+                servicesNearYouListings = TEST_SERVICES,
+                availableThisWeekListings = TEST_SERVICES,
+                recentSearches = TEST_RECENT_SEARCHES,
+                recentlyViewedServices = TEST_SERVICES
+            ),
             onSearchActiveChange = { isActive -> isSearchActive = isActive },
-            popularRightNowListings = popularRightNowListings,
-            newOnHustleListings = newOnHustleListings,
-            servicesNearYouListings = servicesNearYouListings,
-            availableThisWeekListings = availableThisWeekListings,
-            recentSearches = recentSearches,
-            recentlyViewedServices = recentlyViewedServiceListings,
             onSearch = {},
             onSearchSuggestionClick = {},
             navigateToCategorySubpage = {},

@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.cornellappdev.hustle.data.model.services.Service
 import com.cornellappdev.hustle.ui.components.general.ClickableSectionHeader
 import com.cornellappdev.hustle.ui.components.general.service.ServiceHorizontalCarouselSection
-import com.cornellappdev.hustle.ui.navigation.CategoryType
 import com.cornellappdev.hustle.ui.theme.HustleSpacing
 import com.cornellappdev.hustle.ui.theme.HustleTheme
+import com.cornellappdev.hustle.util.constants.CategoryType
 import com.cornellappdev.hustle.util.constants.TEST_SERVICES
 
 @Composable
@@ -112,16 +112,12 @@ fun MainContent(
 @Preview(showBackground = true)
 @Composable
 private fun MainContentPreview() {
-    val popularRightNowListings = TEST_SERVICES
-    val newOnHustleListings = TEST_SERVICES
-    val servicesNearYouListings = TEST_SERVICES
-    val availableThisWeekListings = TEST_SERVICES
     HustleTheme {
         MainContent(
-            popularRightNowListings = popularRightNowListings,
-            newOnHustleListings = newOnHustleListings,
-            servicesNearYouListings = servicesNearYouListings,
-            availableThisWeekListings = availableThisWeekListings,
+            popularRightNowListings = TEST_SERVICES,
+            newOnHustleListings = TEST_SERVICES,
+            servicesNearYouListings = TEST_SERVICES,
+            availableThisWeekListings = TEST_SERVICES,
             navigateToCategorySubpage = {},
             navigateToServiceDetail = {},
             onFavoriteClick = {},

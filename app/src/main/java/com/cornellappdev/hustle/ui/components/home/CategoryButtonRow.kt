@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cornellappdev.hustle.ui.components.general.HustleButton
-import com.cornellappdev.hustle.ui.navigation.CategoryType
 import com.cornellappdev.hustle.ui.theme.HustleSpacing
+import com.cornellappdev.hustle.util.constants.CategoryType
 import com.cornellappdev.hustle.util.constants.SERVICE_CATEGORIES
 
 @Composable
@@ -28,14 +28,15 @@ fun CategoryButtonRow(
         contentPadding = contentPadding,
         horizontalArrangement = Arrangement.spacedBy(HustleSpacing.extraSmall)
     ) {
-        items(SERVICE_CATEGORIES, key = { it.name }) { category ->
+        items(SERVICE_CATEGORIES, key = { it.categoryType }) { category ->
+            val categoryType = category.categoryType
             HustleButton(
-                onClick = { onCategoryClick(CategoryType.fromTypeName(category.name)) },
-                text = category.name,
+                onClick = { onCategoryClick(categoryType) },
+                text = categoryType.typeName,
                 leadingIcon = {
                     Icon(
                         painter = painterResource(id = category.iconResId),
-                        contentDescription = category.name,
+                        contentDescription = categoryType.typeName,
                     )
                 }
             )

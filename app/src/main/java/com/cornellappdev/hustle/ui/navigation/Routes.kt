@@ -1,5 +1,6 @@
 package com.cornellappdev.hustle.ui.navigation
 
+import com.cornellappdev.hustle.util.constants.CategoryType
 import kotlinx.serialization.Serializable
 
 sealed interface AppDestination
@@ -28,25 +29,6 @@ sealed interface HomeDestination : AppDestination {
 
     @Serializable
     data class CategoryServices(val categoryType: CategoryType) : HomeDestination
-}
-
-@Serializable
-enum class CategoryType(val typeName: String) {
-    LESSONS("Lessons"),
-    PHOTO("Photo"),
-    BEAUTY("Beauty"),
-    PROFESSIONAL("Professional"),
-    POPULAR_RIGHT_NOW("Popular right now"),
-    NEW_ON_HUSTLE("New on Hustle"),
-    SERVICES_NEAR_YOU("Services near you"),
-    AVAILABLE_THIS_WEEK("Available this week");
-
-    companion object {
-        fun fromTypeName(typeName: String): CategoryType {
-            return entries.firstOrNull { it.typeName == typeName }
-                ?: throw IllegalArgumentException("No CategoryType with typeName $typeName found.")
-        }
-    }
 }
 
 sealed interface LearnDestination : AppDestination {

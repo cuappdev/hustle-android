@@ -141,12 +141,10 @@ private fun RecentSearchItem(
 @Preview(showBackground = true)
 @Composable
 private fun SearchContentPreview() {
-    val recentSearches = TEST_RECENT_SEARCHES
-    val recentlyViewedServiceListings = TEST_SERVICES
     HustleTheme {
         SearchContent(
-            recentSearches = recentSearches,
-            recentlyViewedServices = recentlyViewedServiceListings,
+            recentSearches = TEST_RECENT_SEARCHES,
+            recentlyViewedServices = TEST_SERVICES,
             onSearchSuggestionClick = {},
             navigateToServiceDetail = {},
             onFavoriteClick = {}
