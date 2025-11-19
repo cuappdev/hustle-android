@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.cornellappdev.hustle.ui.navigation.navgraphs.homeNavGraph
+import com.cornellappdev.hustle.ui.navigation.navgraphs.learnNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.messagesNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.onboardingNavGraph
 import com.cornellappdev.hustle.ui.navigation.navgraphs.profileNavGraph
@@ -45,6 +46,7 @@ fun HustleNavigation(
         ) {
             onboardingNavGraph(navController = navController)
             homeNavGraph(navController = navController)
+            learnNavGraph(navController = navController)
             messagesNavGraph(navController = navController)
             profileNavGraph(navController = navController)
         }

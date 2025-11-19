@@ -21,10 +21,10 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = HustleColors.secondaryGray,
     surfaceVariant = HustleColors.wash,
     surfaceContainer = HustleColors.wash,
-    surfaceContainerHigh = HustleColors.stroke,
+    surfaceContainerHigh = HustleColors.shadedGray,
     background = HustleColors.white,
     onBackground = HustleColors.primaryBlack,
-    outline = HustleColors.stroke,
+    outline = HustleColors.shadedGray,
     outlineVariant = HustleColors.iconInactive
 )
 
@@ -38,10 +38,10 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = HustleColors.secondaryGray,
     surfaceVariant = HustleColors.wash,
     surfaceContainer = HustleColors.wash,
-    surfaceContainerHigh = HustleColors.stroke,
+    surfaceContainerHigh = HustleColors.shadedGray,
     background = HustleColors.white,
     onBackground = HustleColors.primaryBlack,
-    outline = HustleColors.stroke,
+    outline = HustleColors.shadedGray,
     outlineVariant = HustleColors.iconInactive
 
     /* Other default colors to override
