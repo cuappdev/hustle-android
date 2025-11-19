@@ -17,7 +17,7 @@ fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
                     navController.navigate(HomeDestination.ServiceDetail(serviceId))
                 },
                 navigateToCategorySubpage = { categoryType ->
-                    navController.navigate(HomeDestination.CategoryService(categoryType))
+                    navController.navigate(HomeDestination.CategoryServices(categoryType))
                 }
             )
         }
@@ -26,6 +26,6 @@ fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
             val serviceId = backStackEntry.toRoute<HomeDestination.ServiceDetail>()
         }
 
-        composable<HomeDestination.CategoryService> {}
+        composable<HomeDestination.CategoryServices> {}
     }
 }

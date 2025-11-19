@@ -27,7 +27,7 @@ sealed interface HomeDestination : AppDestination {
     data class ServiceDetail(val serviceId: Int) : HomeDestination
 
     @Serializable
-    data class CategoryService(val categoryType: CategoryType) : HomeDestination
+    data class CategoryServices(val categoryType: CategoryType) : HomeDestination
 }
 
 @Serializable
