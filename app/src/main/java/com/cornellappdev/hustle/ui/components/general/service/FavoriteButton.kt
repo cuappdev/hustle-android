@@ -45,7 +45,6 @@ fun FavoriteButton(
         onClick = {
             if (!isFavorite) {
                 coroutineScope.launch {
-                    // Animate the button to scale up and then back to normal size
                     scale.animateTo(1.2f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
                     scale.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
                 }

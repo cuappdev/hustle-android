@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 import com.cornellappdev.hustle.R
 
 data class ServiceCategory(
-    val name: String, @DrawableRes
-    val iconResId: Int
+    val name: String,
+    @DrawableRes val iconResId: Int
 )
 
 val SERVICE_CATEGORIES = listOf(

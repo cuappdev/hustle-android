@@ -28,8 +28,8 @@ import com.cornellappdev.hustle.ui.theme.HustleTheme
 fun HustleButton(
     onClick: () -> Unit,
     text: String?,
-    textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
     modifier: Modifier = Modifier,
+    textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
     enabled: Boolean = true,
     shape: Shape = RoundedCornerShape(20.dp),
     border: BorderStroke? = null,

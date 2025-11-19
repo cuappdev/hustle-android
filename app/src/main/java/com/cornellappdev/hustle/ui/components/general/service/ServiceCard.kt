@@ -52,10 +52,10 @@ fun ServiceCard(
     priceUnit: String,
     serviceRating: Double,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     isFavorite: Boolean? = null,
     onFavoriteClick: (() -> Unit)? = null,
-    cardType: ServiceCardType = ServiceCardType.DEFAULT,
-    modifier: Modifier = Modifier
+    cardType: ServiceCardType = ServiceCardType.DEFAULT
 ) {
     val cardHeight = when (cardType) {
         ServiceCardType.DEFAULT -> 279.dp

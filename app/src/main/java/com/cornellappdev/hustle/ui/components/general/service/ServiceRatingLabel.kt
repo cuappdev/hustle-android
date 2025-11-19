@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cornellappdev.hustle.R
 import com.cornellappdev.hustle.ui.theme.HustleTheme
+import java.util.Locale
 
 @Composable
 fun ServiceRatingLabel(
@@ -33,7 +34,7 @@ fun ServiceRatingLabel(
             tint = Color.Unspecified
         )
         Text(
-            text = String.format("%.1f", rating),
+            text = String.format(Locale.US, "%.1f", rating),
             style = textStyle
         )
     }
