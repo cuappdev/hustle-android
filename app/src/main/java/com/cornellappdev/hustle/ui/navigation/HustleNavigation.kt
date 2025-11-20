@@ -20,7 +20,6 @@ fun HustleNavigation(
 ) {
     val navController = rememberNavController()
     val startDestination = if (isSignedIn) HomeTab else Onboarding
-    val currentRoute = navController.currentBackStackEntry?.destination?.route
 
     LaunchedEffect(isSignedIn) {
         if (!isSignedIn && navController.currentDestination != Onboarding) {

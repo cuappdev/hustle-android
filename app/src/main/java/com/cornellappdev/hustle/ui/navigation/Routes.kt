@@ -1,5 +1,6 @@
 package com.cornellappdev.hustle.ui.navigation
 
+import com.cornellappdev.hustle.util.constants.CategoryType
 import kotlinx.serialization.Serializable
 
 sealed interface AppDestination
@@ -25,6 +26,9 @@ sealed interface HomeDestination : AppDestination {
 
     @Serializable
     data class ServiceDetail(val serviceId: Int) : HomeDestination
+
+    @Serializable
+    data class CategoryServices(val categoryType: CategoryType) : HomeDestination
 }
 
 sealed interface LearnDestination : AppDestination {
